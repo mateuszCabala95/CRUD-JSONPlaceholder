@@ -1,0 +1,22 @@
+.paginator{
+  position: sticky;
+  bottom: 0;
+}
+.modal-content{
+  //background-color: #343a40;
+}
+form.modal-form{
+  color:grey;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+textarea{
+  overflow:auto;
+}
+

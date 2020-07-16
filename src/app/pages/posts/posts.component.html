@@ -1,1 +1,117 @@
-<p>posts works!</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-3">POSTS</h2>
+    <button mat-flat-button color="primary">Add
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+<ng-container
+  *ngFor="let post of posts
+  .slice(this.currentPage * this.pageSize,this.currentPage * this.pageSize + this.pageSize)">
+  <mat-expansion-panel class="my-2">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{post.title | titlecase}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-panel-description>
+      <!--      TODO:Make pipe first letter Uppercase-->
+      {{post.body}}
+    </mat-panel-description>
+    <mat-action-row>
+      <button
+        mat-flat-button
+        color="warn"
+        data-toggle="modal"
+        data-target="#editPost"
+        (click)="getEditedPost(post)"
+      >Edit<mat-icon>create</mat-icon>
+      </button>
+      <button mat-flat-button color="primary" (click)="onPostDelete(post.id)">Delete
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+</ng-container>
+
+
+<mat-paginator
+  class="paginator"
+  color="accent"
+  [pageIndex]="currentPage"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  [length]="posts.length"
+  (page)="handlePage($event)"
+  showFirstLastButtons
+></mat-paginator>
+<!--#paginator-->
+
+
+<!--MODAL - EDIT POST-->
+<div class="modal fade modal-lg"
+     id="editPost"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="editPost"
+     aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="modal-form">
+          <mat-form-field class="mr-5">
+            <mat-label>Title</mat-label>
+            <input
+              matInput
+              type="text"
+              [value]="postTitle"
+              name="postTitle"
+              [(ngModel)]="postTitle">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Message</mat-label>
+            <textarea
+              matInput
+              type="text"
+              rows="5"
+              [value]="postBody"
+              name="postBody"
+              spellcheck="false"
+              [(ngModel)]="postBody"
+            ></textarea>
+          </mat-form-field>
+        </form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          mat-raised-button
+          data-dismiss="modal"
+          class="mr-2"
+        >Close
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          class="btn btn-primary"
+          (click)="onEditPost()"
+          data-dismiss="modal"
+        >Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

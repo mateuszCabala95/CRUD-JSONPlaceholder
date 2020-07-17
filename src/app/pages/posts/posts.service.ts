@@ -26,7 +26,11 @@ export class PostsService {
   }
 
   addPost(post: Partial<IPost>): Observable<IPost>{
-    return this.http.post<IPost>(this.POSTS_URL, post)
+    return this.http.post<IPost>(this.POSTS_URL, post,{
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
   }
 
   editPost(id: number, post: IPost): Observable<IPost>{

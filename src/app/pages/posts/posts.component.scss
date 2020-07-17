@@ -5,9 +5,12 @@
 .modal-content{
   //background-color: #343a40;
 }
+.modal-dialog{
+  background-color: bisque;
+  border-radius: 5px;
+}
 form.modal-form{
   color:grey;
-
   display: flex;
   flex-wrap: wrap;
 }

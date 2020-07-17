@@ -14,9 +14,10 @@ import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {FirstLetterUpperPipe} from '../../shared/pipes/first-letter-upper.pipe';
 
 @NgModule({
-  declarations: [PostsComponent],
+  declarations: [PostsComponent, FirstLetterUpperPipe],
   imports: [
     CommonModule,
     PostsRoutingModule,

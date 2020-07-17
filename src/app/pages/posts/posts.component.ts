@@ -34,11 +34,11 @@ export class PostsComponent implements OnInit {
   }
 
   //Pagination
-  currentPage = 0;
+  currentPageIndex = 0;
   pageSize = 25;
 
   handlePage(e: PageEvent) {
-    this.currentPage = e.pageIndex;
+    this.currentPageIndex = e.pageIndex;
     this.pageSize = e.pageSize;
   }
 
@@ -71,6 +71,25 @@ onEditPost(){
   console.log('Post Edited');
 
 }
+
+
+//add post
+
+  onAddPost(){
+  const addPost ={
+    title : this.postTitle,
+    body: this.postBody,
+    userId: Math.floor(Math.random()*5),
+  }
+
+  this.postsService.addPost(addPost).subscribe(data=> console.log(data));
+    this._snackBar.open('Post added', null,{
+      duration: 2000
+    });
+
+    console.log('post added');
+
+  }
 
 
   //delete post

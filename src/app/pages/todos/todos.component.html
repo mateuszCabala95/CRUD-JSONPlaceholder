@@ -3,48 +3,91 @@
   <button
     mat-raised-button
     color="secondary"
-  >Create <mat-icon>add</mat-icon></button>
+    (click)="onOpenSidebar()"
+  >Create
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
-<table mat-table [dataSource]="todos" class="mat-elevation-z8">
+
+<!--add new todos-->
 
 
-  <!--NO.-->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>No. </th>
-    <td mat-cell *matCellDef="let todo">{{todo.id}}</td>
-  </ng-container>
-
-
-<!--TITlE-->
-  <ng-container matColumnDef="title" >
-    <th mat-header-cell *matHeaderCellDef>Title </th>
-    <td mat-cell *matCellDef="let todo">{{todo.title}}</td>
-  </ng-container>
-
-
-  <!--COMPLETED-->
-  <ng-container matColumnDef="completed">
-    <th mat-header-cell *matHeaderCellDef>Completed </th>
-    <td mat-cell *matCellDef="let todo">{{todo.completed ? "Yes" : 'No'}}</td>
-  </ng-container>
-
-  <!--ACTIONS-->
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef class="m-2">Actions </th>
-    <td mat-cell *matCellDef="let todo">
+<mat-sidenav-container>
+  <mat-sidenav [opened]="isOpenSidebar">
+    <h4 class="display-3 text-center m-5 border-bottom">Add new task</h4>
+    <form class="newTask">
+      <div class="form-group">
+        <label for="task">Task name:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="task"
+          name="taskName"
+          [(ngModel)]="taskName"
+        >
+      </div>
+      <mat-slide-toggle
+        class="my-2"
+        [(ngModel)]="isTaskDone"
+        (change)="onLog()"
+        name="taskDone"
+      >Is Done</mat-slide-toggle>
       <button
         mat-raised-button
+        class="my-2"
         color="warn"
-      >Edit <mat-icon>edit</mat-icon></button>
-      <button
-        mat-raised-button
-        color="primary"
-        class="mx-3"
-        (click)="deleteTodo(todo.id)"
-      >Delete <mat-icon>delete</mat-icon></button>
-    </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+        type="button"
+        (click)="onAddTodo()"
+      >Add <mat-icon>add</mat-icon></button>
+    </form>
+  </mat-sidenav>
 
+  <mat-sidenav-content>
+    <table mat-table [dataSource]="todos" class="mat-elevation-z8">
+
+
+      <!--NO.-->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let todo">{{todo.id}}</td>
+      </ng-container>
+
+
+      <!--TITlE-->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let todo">{{todo.title}}</td>
+      </ng-container>
+
+
+      <!--COMPLETED-->
+      <ng-container matColumnDef="completed">
+        <th mat-header-cell *matHeaderCellDef>Completed</th>
+        <td mat-cell *matCellDef="let todo">{{todo.completed ? "Yes" : 'No'}}</td>
+      </ng-container>
+
+      <!--ACTIONS-->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="m-2">Actions</th>
+        <td mat-cell *matCellDef="let todo">
+          <button
+            mat-raised-button
+            color="warn"
+          >Edit
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="mx-3"
+            (click)="deleteTodo(todo.id)"
+          >Delete
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-sidenav-content>
+</mat-sidenav-container>

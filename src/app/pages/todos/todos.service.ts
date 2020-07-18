@@ -19,7 +19,7 @@ export class TodosService {
   }
 
   createTodo(todo: Partial<ITodo>){
-    this.http.post<Partial<ITodo>>(this.TODOS_URL, todo, {
+    return this.http.post<ITodo>(this.TODOS_URL, todo, {
       headers:{
         "Content-type": "application/json; charset=UTF-8"
       }
@@ -27,7 +27,7 @@ export class TodosService {
   }
 
   updateTodo(todo:ITodo){
-    this.http.put(this.TODOS_URL, todo, {
+   return this.http.put(this.TODOS_URL, todo, {
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       }

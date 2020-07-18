@@ -7,8 +7,10 @@ import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -20,8 +22,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatInputModule,
     MatFormFieldModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    FormsModule,
   ],
 })
 export class TodosModule { }

@@ -32,10 +32,45 @@ export class TodosComponent implements OnInit {
   }
 
   //add todos
+  isOpenSidebar = false;
+  taskName = '';
+  isTaskDone = false;
+
+  onLog(){
+    console.log(this.isTaskDone);
+  }
+
+  onOpenSidebar() {
+    this.isOpenSidebar = !this.isOpenSidebar;
+  }
+
+  onAddTodo(){
+    console.log(this.isTaskDone);
+    console.log(this.taskName);
+
+    const newTask = {
+      userId: Math.floor(Math.random() * 5),
+      title:this.taskName,
+      completed: this.isTaskDone
+    }
+
+
+    this.todosService.createTodo(newTask).subscribe(
+      data => {
+        // this.todos.push(data);
+        // console.log(data);
+
+        this.todos = [...this.todos, data]
+      })
+
+    this.taskName = '';
+    this.isTaskDone = false;
+    this.isOpenSidebar = false;
+  }
 
   //delete
 
-  deleteTodo(id: number){
+  deleteTodo(id: number) {
     this.todosService.deletePost(id).subscribe();
     this.todos = [...this.todos.filter(todo => todo.id !== id)];
   }

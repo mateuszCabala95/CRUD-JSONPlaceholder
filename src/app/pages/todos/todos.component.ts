@@ -32,40 +32,73 @@ export class TodosComponent implements OnInit {
   }
 
   //add todos
-  isOpenSidebar = false;
+  isOpenAddNewTask = false;
   taskName = '';
   isTaskDone = false;
 
-  onLog(){
-    console.log(this.isTaskDone);
-  }
-
   onOpenSidebar() {
-    this.isOpenSidebar = !this.isOpenSidebar;
+    this.isOpenAddNewTask = !this.isOpenAddNewTask;
   }
 
-  onAddTodo(){
+  onAddTodo() {
     console.log(this.isTaskDone);
     console.log(this.taskName);
 
-    const newTask = {
+    const newTask: Partial<ITodo> = {
       userId: Math.floor(Math.random() * 5),
-      title:this.taskName,
+      title: this.taskName,
       completed: this.isTaskDone
-    }
+    };
 
 
     this.todosService.createTodo(newTask).subscribe(
       data => {
-        // this.todos.push(data);
-        // console.log(data);
-
-        this.todos = [...this.todos, data]
-      })
+        this.todos = [...this.todos, data];
+      });
 
     this.taskName = '';
     this.isTaskDone = false;
-    this.isOpenSidebar = false;
+    this.isOpenAddNewTask = false;
+  }
+
+
+  //edit task
+  editedTaskName = '';
+  editedTaskDone: boolean;
+  editedTaskId: number;
+  editedTaskUserId: number;
+
+  isOpenEditTask = false;
+
+
+  onEditTask(task: ITodo) {
+    this.editedTaskName = task.title;
+    this.editedTaskDone = task.completed;
+    this.editedTaskId = task.id;
+    this.editedTaskUserId = task.userId;
+
+    this.isOpenEditTask = !this.isOpenEditTask;
+  };
+
+
+  onSaveTask() {
+
+    const editedTask: ITodo = {
+      userId: this.editedTaskUserId,
+      id: this.editedTaskId,
+      title: this.editedTaskName,
+      completed: this.editedTaskDone
+    };
+
+
+    this.todosService.updateTodo(editedTask).subscribe((task: ITodo) => {
+
+      const index = this.todos.findIndex(todo => todo.id === task.id);
+      this.todos[index] = task;
+
+    });
+
+
   }
 
   //delete

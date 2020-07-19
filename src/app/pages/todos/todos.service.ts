@@ -27,7 +27,7 @@ export class TodosService {
   }
 
   updateTodo(todo:ITodo){
-   return this.http.put(this.TODOS_URL, todo, {
+   return this.http.put(`${this.TODOS_URL}/${todo.id}`, todo, {
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       }

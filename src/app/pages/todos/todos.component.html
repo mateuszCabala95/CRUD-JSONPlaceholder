@@ -9,19 +9,20 @@
   </button>
 </div>
 
-<!--add new todos-->
 
 
 <mat-sidenav-container>
-  <mat-sidenav [opened]="isOpenSidebar">
+  <!--Add new task-->
+
+  <mat-sidenav [opened]="isOpenAddNewTask">
     <h4 class="display-3 text-center m-5 border-bottom">Add new task</h4>
     <form class="newTask">
       <div class="form-group">
-        <label for="task">Task name:</label>
+        <label for="addTask">Task name:</label>
         <input
           class="form-control"
           type="text"
-          id="task"
+          id="addTask"
           name="taskName"
           [(ngModel)]="taskName"
         >
@@ -29,7 +30,6 @@
       <mat-slide-toggle
         class="my-2"
         [(ngModel)]="isTaskDone"
-        (change)="onLog()"
         name="taskDone"
       >Is Done</mat-slide-toggle>
       <button
@@ -39,6 +39,42 @@
         type="button"
         (click)="onAddTodo()"
       >Add <mat-icon>add</mat-icon></button>
+    </form>
+  </mat-sidenav>
+
+
+<!--  Edit task-->
+
+  <mat-sidenav
+    position="end"
+    [opened]="isOpenEditTask"
+    (change)="isOpenEditTask =!isOpenEditTask"
+  >
+    <h4 class="display-3 text-center m-5 border-bottom">Edit task</h4>
+    <form class="flex-column m-3">
+      <label for="editTask">Edit Task: </label>
+      <input
+        type="text"
+        id="editTask"
+        class="form-control"
+        name="editTask"
+        [(ngModel)]="editedTaskName"
+      >
+
+      <mat-slide-toggle
+        class="my-2"
+        [(ngModel)]="editedTaskDone"
+        name="taskDone"
+      >Is Done</mat-slide-toggle>
+
+      <button
+      mat-raised-button
+      class="my-2"
+      color="warn"
+      type="button"
+      (click)="onSaveTask()"
+    >Save <mat-icon>save</mat-icon></button>
+
     </form>
   </mat-sidenav>
 
@@ -73,6 +109,7 @@
           <button
             mat-raised-button
             color="warn"
+            (click)="onEditTask(todo)"
           >Edit
             <mat-icon>edit</mat-icon>
           </button>

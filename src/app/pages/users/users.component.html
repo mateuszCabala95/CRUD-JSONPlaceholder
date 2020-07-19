@@ -1,1 +1,17 @@
-<p>users works!</p>
+<div class="jumbotron my-3">
+  <div class="container">
+    <h2 class="display-3">Users</h2>
+    <button
+      mat-flat-button
+      data-toggle="modal"
+      data-target="#addNewPost"
+      color="primary">New User
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+<ng-container *ngFor="let user of users">
+<!--  TODO: add card container for user-->
+</ng-container>

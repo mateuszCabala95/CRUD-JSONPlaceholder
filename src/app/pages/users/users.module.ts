@@ -6,16 +6,25 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
-  declarations: [UsersComponent],
+  declarations: [UsersComponent, UserDetailsComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
     HttpClientModule,
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatListModule,
+    MatDividerModule,
   ]
 })
 export class UsersModule { }

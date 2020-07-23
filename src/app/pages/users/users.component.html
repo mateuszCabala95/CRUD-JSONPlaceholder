@@ -3,15 +3,60 @@
     <h2 class="display-3">Users</h2>
     <button
       mat-flat-button
-      data-toggle="modal"
-      data-target="#addNewPost"
       color="primary">New User
       <mat-icon>add</mat-icon>
     </button>
   </div>
 </div>
 
+<router-outlet></router-outlet>
 
-<ng-container *ngFor="let user of users">
-<!--  TODO: add card container for user-->
-</ng-container>
+<div class="container flex-container">
+
+  <ng-container *ngFor="let user of users">
+
+    <div class="card">
+      <div class="card-body">
+        <h5>
+          {{user.name | titlecase}}
+        </h5>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            Address:
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+
+            <mat-list>
+
+              <mat-list-item>{{user.address.street}}{{user.address.suite}}</mat-list-item>
+              <mat-list-item>{{user.address.city}}</mat-list-item>
+              <mat-list-item>{{user.address.zipcode}}</mat-list-item>
+
+            </mat-list>
+          </mat-panel-description>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="my-2">
+          <mat-expansion-panel-header>
+            Company:
+          </mat-expansion-panel-header>
+
+          <mat-panel-description>
+            <mat-list>
+              <mat-list-item>{{user.company.name}}</mat-list-item>
+            </mat-list>
+          </mat-panel-description>
+        </mat-expansion-panel>
+
+
+        <button
+          mat-flat-button
+          color="primary"
+          [routerLink]="['./', user.id]"
+          (click)="scrollToElement()"
+        >Details </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

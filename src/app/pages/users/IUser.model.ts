@@ -3,33 +3,24 @@ export interface IUser {
   name: string,
   username: string,
   email: string,
-  address: {
-    [key: string]: IAddress,
-  },
+  address:
+    {
+      street: string,
+      suite: string,
+      city: string,
+      zipcode: string,
+    },
   geo: {
-    [key: string]: IGeo,
+    lat: string,
+    lng: string,
   }
   phone: string,
   website: string,
   company: {
-    [key: string]: ICompany,
+    name: string,
+    catchPhrase: string,
+    bs: string
   }
+
 }
 
-interface IAddress {
-  street: string,
-  suite: string,
-  city: string,
-  zipcode: string
-}
-
-interface IGeo {
-  lat: string,
-  lng: string,
-}
-
-interface ICompany{
-  name: string,
-  catchPhrase: string,
-  bs: string
-}

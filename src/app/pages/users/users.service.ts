@@ -21,6 +21,10 @@ export class UsersService {
     return this.http.get<IUser[]>(this.USERS_URL);
   }
 
+  getSingleUser(id: number): Observable<IUser>{
+   return this.http.get<IUser>(`${this.USERS_URL}/${id}`)
+  }
+
   addUser(user: IUser): Observable<IUser> {
     return this.http.post<IUser>(this.USERS_URL, user, {
       headers: {
@@ -38,8 +42,8 @@ export class UsersService {
     });
   }
 
-  deleteUser(userId: number): Observable<{}>{
-    return this.http.delete<{}>(`${this.USERS_URL}/${userId}`)
+  deleteUser(id: number): Observable<{}>{
+    return this.http.delete<{}>(`${this.USERS_URL}/${id}`)
   }
 
 }

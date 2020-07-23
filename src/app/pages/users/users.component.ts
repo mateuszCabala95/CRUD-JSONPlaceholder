@@ -26,4 +26,17 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  scrollToElement(): void {
+    // const element = document.querySelector('.jumbotron');
+    const element = document.querySelector('router-outlet')
+    element.scrollIntoView(
+      {
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest"
+      });
+  }
+
+
+
 }

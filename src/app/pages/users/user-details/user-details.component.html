@@ -11,12 +11,12 @@
 
   <h3>Company</h3>
   <h4 mat-subheader>{{user?.company.name}}</h4>
-<!--  <h4 mat-subheader>{{user?.company.bs}}</h4>-->
-<!--  <h4 mat-subheader>{{user?.company.catchPhrase}}</h4>-->
-  <p *ngFor="let phrase of user.company.catchPhrase.split(' ')">#{{[phrase | titlecase]}}</p>
+  <p *ngFor="let phrase of user?.company.catchPhrase.split(' ')">#{{[phrase | titlecase]}}</p>
 
   <hr>
 
-
-
+  <h3>Address</h3>
+  <h4 mat-subheader>{{user?.address.city}}</h4>
+  <p>{{user?.address.street}} {{user?.address.suite}}</p>
+  <p>{{user?.address.zipcode}} {{user?.address.city}}</p>
 </div>

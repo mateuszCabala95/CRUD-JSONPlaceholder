@@ -1,0 +1,22 @@
+<div class="container">
+  <button routerLink="../" mat-fab>
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <h2>{{user?.name}}</h2>
+  <h3 mat-subheader>{{user?.username}}</h3>
+  <h3 mat-subheader>{{user?.website}}</h3>
+  <a href="mailto:{{user?.email}}">{{user?.email}}</a>
+
+  <hr>
+
+  <h3>Company</h3>
+  <h4 mat-subheader>{{user?.company.name}}</h4>
+<!--  <h4 mat-subheader>{{user?.company.bs}}</h4>-->
+<!--  <h4 mat-subheader>{{user?.company.catchPhrase}}</h4>-->
+  <p *ngFor="let phrase of user.company.catchPhrase.split(' ')">#{{[phrase | titlecase]}}</p>
+
+  <hr>
+
+
+
+</div>

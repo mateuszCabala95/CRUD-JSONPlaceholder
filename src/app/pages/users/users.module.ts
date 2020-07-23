@@ -11,10 +11,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import {MatDividerModule} from '@angular/material/divider';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 @NgModule({
-  declarations: [UsersComponent, UserDetailsComponent],
+  declarations: [UsersComponent, UserDetailsComponent, AddUserComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

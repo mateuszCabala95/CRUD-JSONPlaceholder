@@ -1,14 +1,19 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {UsersComponent} from './users.component';
 import {UserDetailsComponent} from './user-details/user-details.component';
+import {AddUserComponent} from './add-user/add-user.component';
 
 
 const routes: Routes = [
-  {path: '', component: UsersComponent,
+  {
+    path: '', component: UsersComponent,
     children: [
-    {path:':id', component: UserDetailsComponent}
-    ]}
+      {path: 'add', component: AddUserComponent, pathMatch: 'full'},
+      {path: ':id', component: UserDetailsComponent}
+    ],
+  },
+
 ];
 
 @NgModule({
@@ -16,4 +21,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 // @ts-ignore
-export class UsersRoutingModule { }
+export class UsersRoutingModule {
+}

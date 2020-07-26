@@ -25,7 +25,7 @@ export class UsersService {
    return this.http.get<IUser>(`${this.USERS_URL}/${id}`)
   }
 
-  addUser(user: IUser): Observable<IUser> {
+  addUser(user: Partial<IUser>): Observable<IUser> {
     return this.http.post<IUser>(this.USERS_URL, user, {
       headers: {
         'Content-type': 'application/json; charset=UTF-8'

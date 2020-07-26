@@ -12,6 +12,10 @@ import {MatListModule} from '@angular/material/list';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { AddUserComponent } from './add-user/add-user.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -26,6 +30,10 @@ import { AddUserComponent } from './add-user/add-user.component';
     MatExpansionModule,
     MatListModule,
     MatDividerModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class UsersModule { }

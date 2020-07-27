@@ -95,6 +95,7 @@ export class TodosComponent implements OnInit {
 
       const index = this.todos.findIndex(todo => todo.id === task.id);
       this.todos[index] = task;
+      this.todos = [...this.todos]
 
     });
 

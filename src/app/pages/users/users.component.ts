@@ -1,7 +1,6 @@
-import {Component, OnInit, DoCheck} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UsersService} from './users.service';
 import {IUser} from './IUser.model';
-import {NewUserService} from './new-user.service';
 
 
 @Component({
@@ -9,19 +8,17 @@ import {NewUserService} from './new-user.service';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit, DoCheck{
+export class UsersComponent implements OnInit {
 
-  users: IUser[];
+  users: Partial<IUser[]>;
 
   constructor(
     private usersService: UsersService,
-    private newUserService: NewUserService
   ) {
   }
 
   ngOnInit(): void {
     this.getAllUsers();
-
   }
 
   getAllUsers() {
@@ -38,17 +35,6 @@ export class UsersComponent implements OnInit, DoCheck{
         block: 'start',
         inline: 'nearest'
       });
-  }
-
-
-
-
-  addNewUser() {
-    this.newUserService.currentUser.subscribe(newUser => [...this.users, newUser]);
-  }
-
-  ngDoCheck() {
-    // this.addNewUser()
   }
 
 }

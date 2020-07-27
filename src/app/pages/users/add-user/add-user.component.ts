@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NewUserService} from '../new-user.service';
 import {UsersService} from '../users.service';
 import {IUser} from '../IUser.model';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
@@ -12,42 +11,15 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 export class AddUserComponent implements OnInit {
 
   constructor(
-    private newUserService: NewUserService,
     private user: UsersService,
   ) {
   }
 
-  onAddUser() {
-    this.user.addUser(this.newUserData).subscribe(data => {
-      const newUser$ = () => {
-        this.newUserService.addUser(data);
-        console.log(data);
-      };
-      newUser$()
-    });
+  ngOnInit(): void {
   }
 
 
 
-  newUserData: Partial<IUser> = {
-    name: '',
-    username: '',
-    email: '',
-
-    address: {
-      street: '',
-      suite: '',
-      city: '',
-      zipcode: '',
-    },
-
-    company: {
-      name:'',
-      catchPhrase: '',
-      bs: '',
-    }
-
-  };
 
 
   newUserNameForm: FormGroup = new FormGroup({
@@ -70,9 +42,33 @@ export class AddUserComponent implements OnInit {
     bs: new FormControl(''),
   })
 
-  ngOnInit(): void {
-  }
 
+  onSubmitUser() {
+   const newUserData: Partial<IUser> = {
+      name: this.newUserNameForm.value.name,
+      username: this.newUserNameForm.value.username,
+      email: this.newUserNameForm.value.email,
+
+      address: {
+        street: this.newUserAddressForm.value.street,
+        suite: this.newUserAddressForm.value.suite,
+        city: this.newUserAddressForm.value.city,
+        zipcode: this.newUserAddressForm.value.zipcode,
+      },
+
+      company: {
+        name:this.newUserCompanyForm.value.name,
+        catchPhrase: this.newUserCompanyForm.value.catchPhrase,
+        bs: this.newUserCompanyForm.value.bs,
+      }
+    };
+
+   this.user.addUser(newUserData).subscribe(data =>  {
+     console.log(data);
+   }  )
+
+
+  }
 
 
 

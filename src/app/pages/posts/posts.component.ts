@@ -82,7 +82,13 @@ onEditPost(){
     userId: Math.floor(Math.random()*5),
   }
 
-  this.postsService.addPost(addPost).subscribe(data=> console.log(data));
+  this.postsService.addPost(addPost).subscribe(data=> {
+    this.posts = [...this.posts, data]
+    this.postTitle = '';
+    this.postBody = '';
+    this.postUserId = null;
+    this.postID = null;
+  });
     this._snackBar.open('Post added', null,{
       duration: 2000
     });
